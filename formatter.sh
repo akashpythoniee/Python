@@ -25,7 +25,6 @@ DATE="$(date +%m/%d/%y)"
 if [[ -z $(git status --porcelain) ]]; then
     echo "${GREEN}Nothing to format & push${NC}"
 else
-    git checkout -b formatted
     git config user.email "49350241+crazyuploader@users.noreply.github.com"
     git config user.name "crazyuploader"
     git add .
