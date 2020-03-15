@@ -23,7 +23,7 @@ if [[ -z $(git status --porcelain) ]]; then
 else
     echo git add .
     git commit -m "Travis CI -- Auto Linter Date: $(date +%m/%d/%y)"
-    git push https://crazyuploader:"${GITHUB_TOKEN}"@"${GH_REF}" HEAD:linted
+    git push https://crazyuploader:"${GITHUB_TOKEN}"@"${GH_REF}" linted --force
     echo ""
     echo -e "${YELLOW}Linted Python code pushed to branch 'linted'"
 fi
