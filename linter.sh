@@ -21,10 +21,10 @@ echo ""
 if [[ -z $(git status --porcelain) ]]; then
     echo "${GREEN}Nothing to lint & push${NC}"
 else
-    git diff .
     git add .
-    git commit -m "Travis CI -- Auto Linter Date: $(date +%m/%d/%y)"
+    git commit -m "Latest Commit: $(git log --pretty=format:'%s' -1)" -m "Travis CI -- Auto Linter Date: $(date +%m/%d/%y)"
     git push https://crazyuploader:"${GITHUB_TOKEN}"@"${GH_REF}" HEAD:linted
     echo ""
     echo -e "${YELLOW}Linted Python code pushed to branch 'linted'"
+    echo ""
 fi
