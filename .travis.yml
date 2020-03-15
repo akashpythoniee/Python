@@ -1,11 +1,10 @@
 dist: bionic
 language: python
 python:
-    - "2.7"
-    - "3.7"
     - "3.8"
 install:
     - pip install --upgrade pip
-    - pip install flake8 pyflakes
+    - pip install black
 script:
-    - echo "Running 'check.sh' script" && bash check.sh
+    - black .
+    - for f in *.py; do echo ""; git diff $f; done
