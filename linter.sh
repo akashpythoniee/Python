@@ -19,7 +19,8 @@ echo ""
 black .
 echo ""
 LAST_COMMIT="$(git log --pretty=format:'%s' -1)"
-LAST_COMMIT_LINK="https://github.com/crazyuploader/Python/commit/${LAST_COMMIT}"
+LAST_COMMIT_SHA="$(git rev-parse HEAD)"
+LAST_COMMIT_LINK="https://github.com/crazyuploader/Python/commit/${LAST_COMMIT_SHA}"
 DATE="$(date +%m/%d/%y)"
 if [[ -z $(git status --porcelain) ]]; then
     echo "${GREEN}Nothing to lint & push${NC}"
