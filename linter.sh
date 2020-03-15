@@ -21,9 +21,12 @@ echo ""
 if [[ -z $(git status --porcelain) ]]; then
     echo "${GREEN}Nothing to lint & push${NC}"
 else
+    git stash
+    git checkout linted
+    git stash pop
     echo git add .
     git commit -m "Travis CI -- Auto Linter Date: $(date +%m/%d/%y)"
-    git push https://crazyuploader:"${GITHUB_TOKEN}"@"${GH_REF}" linted --force
+    git push https://crazyuploader:"${GITHUB_TOKEN}"@"${GH_REF}" HEAD:linted
     echo ""
     echo -e "${YELLOW}Linted Python code pushed to branch 'linted'"
 fi
