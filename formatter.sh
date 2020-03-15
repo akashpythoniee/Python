@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Python Auto-Linter using 'black'
+# Python Auto Code Formatter using 'black'
 
 # Colors
 NC="\033[0m"
@@ -14,7 +14,7 @@ echo ""
 git clone https://"${GH_REF}" -b master python
 cd python || exit
 echo ""
-echo "Linting Python Files with 'black'"
+echo "Formatting Python Files with 'black'"
 echo ""
 black .
 echo ""
@@ -23,20 +23,21 @@ LAST_COMMIT_SHA="$(git rev-parse HEAD)"
 LAST_COMMIT_LINK="https://github.com/crazyuploader/Python/commit/${LAST_COMMIT_SHA}"
 DATE="$(date +%m/%d/%y)"
 if [[ -z $(git status --porcelain) ]]; then
-    echo "${GREEN}Nothing to lint & push${NC}"
+    echo "${GREEN}Nothing to format & push${NC}"
 else
+    git checkout -b formatted
     git config user.email "49350241+crazyuploader@users.noreply.github.com"
     git config user.name "crazyuploader"
     git add .
-    git commit -m "Travis CI -- Auto Linter"              \
+    git commit -m "Travis CI -- Auto Formatter"           \
                -m ""                                       \
-               -m "  Linting Date: ${DATE}"                 \
+               -m "  Formatting Date: ${DATE}"              \
                -m ""                                         \
-               -m "  Original Commit: ${LAST_COMMIT}"         \
+               -m "  Original Commit - ${LAST_COMMIT}"        \
                -m ""                                           \
                -m "  Original Commit Link: ${LAST_COMMIT_LINK}"
-    git push https://crazyuploader:"${GITHUB_TOKEN}"@"${GH_REF}" HEAD:linted --force
+    git push https://crazyuploader:"${GITHUB_TOKEN}"@"${GH_REF}" HEAD:formatted --force
     echo ""
-    echo -e "${YELLOW}Linted Python code pushed to branch 'linted' at https://github.com/crazyuploader/Python/tree/linted${NC}"
+    echo -e "${YELLOW}Formatter Python code pushed to branch 'formatted' at https://github.com/crazyuploader/Python/tree/formatted${NC}"
     echo ""
 fi
