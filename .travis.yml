@@ -6,4 +6,4 @@ install:
     - pip install --upgrade pip
     - pip install black
 script:
-    - bash linter.sh
+    - bash formatter.sh
