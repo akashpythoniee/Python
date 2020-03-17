@@ -32,7 +32,7 @@ else
                -m ""                                       \
                -m "  Formatting Date: ${DATE}"              \
                -m ""                                         \
-               -m "  Original Commit - ${LAST_COMMIT}"        \
+               -m "  Original Commit - '${LAST_COMMIT}'"      \
                -m ""                                           \
                -m "  Original Commit Link: ${LAST_COMMIT_LINK}"
     git push https://crazyuploader:"${GITHUB_TOKEN}"@"${GH_REF}" HEAD:formatted --force
